@@ -1,0 +1,53 @@
+name: messagingapp
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.3 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_native_splash: ^2.2.7
+  flutter_lints: ^2.0.0
+  get: ^4.6.5
+  auto_size_text: ^3.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+
+# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splashbackground.png
+  color_dark: "#121212"
+
+  android_12:
+    image: assets/splashbackground.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/splashbackground.png
+    icon_background_color_dark: "#121212"
+
+  web: false
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+  # - assets/images/
+  # - assets/animations/
+  # - assets/fonts/
+  # - assets/native/
+  # - assets/images/banners/
+  # - assets/images/backgrounds/
+  # - assets/images/collections/
+  # - assets/fonts/Raleway/
+  # - assets/fonts/AllRoundGothic/
