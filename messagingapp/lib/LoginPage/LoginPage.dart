@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:messagingapp/core/utils/custom_colors.dart';
+import 'package:messagingapp/widgets/custom_button/custom_button.dart';
 import 'package:messagingapp/widgets/custom_textformfield/custom_textformfield.dart';
 
 class LoginPage extends StatelessWidget {
@@ -66,6 +68,29 @@ class LoginPage extends StatelessWidget {
                 onChanged: (value) => print(value),
                 hintText: 'Enter your email',
                 prefixIcon: Icons.mail,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: CustomColors.colorB0C6BB),
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "data",
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
