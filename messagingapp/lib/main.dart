@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:messagingapp/LoginPage/LoginPage.dart';
 
 Future main() async {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(primaryColor: Colors.indigo),
