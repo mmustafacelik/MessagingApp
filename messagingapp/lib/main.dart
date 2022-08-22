@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:messagingapp/LocaleString.dart';
 import 'package:messagingapp/LoginPage/LoginPage.dart';
 
 Future main() async {
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
+        translations: LocaleString(),
+        locale: const Locale('en', 'US'),
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(primaryColor: Colors.indigo),

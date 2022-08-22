@@ -38,39 +38,43 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color?>(
-          widget.backgroundColor ?? CustomColors.color002060,
-        ),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(widget.radius ?? 18.0),
-            side: BorderSide(
-                color: widget.radiusColor ?? CustomColors.colorB0C6BB),
+    return SizedBox(
+      width: widget.width,
+      height: widget.height,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color?>(
+            widget.backgroundColor ?? CustomColors.color002060,
+          ),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(widget.radius ?? 18.0),
+              side: BorderSide(
+                  color: widget.radiusColor ?? CustomColors.colorB0C6BB),
+            ),
           ),
         ),
-      ),
-      onPressed: widget.onPressed,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (widget.prefixIcon != null)
-            Row(
-              children: [
-                widget.prefixIcon!,
-                SizedBox(width: widget.spaceBetween ?? 10),
-              ],
-            ),
-          if (widget.text != null)
-            Row(
-              children: [
-                widget.text ?? const Text('Login'),
-                SizedBox(width: widget.spaceBetween ?? 10),
-              ],
-            ),
-          widget.suffixIcon ?? const SizedBox.shrink()
-        ],
+        onPressed: widget.onPressed,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.prefixIcon != null)
+              Row(
+                children: [
+                  widget.prefixIcon!,
+                  SizedBox(width: widget.spaceBetween ?? 10),
+                ],
+              ),
+            if (widget.text != null)
+              Row(
+                children: [
+                  widget.text ?? const Text('Login'),
+                  SizedBox(width: widget.spaceBetween ?? 10),
+                ],
+              ),
+            widget.suffixIcon ?? const SizedBox.shrink()
+          ],
+        ),
       ),
     );
   }

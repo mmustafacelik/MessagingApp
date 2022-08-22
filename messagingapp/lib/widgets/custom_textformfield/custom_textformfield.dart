@@ -151,7 +151,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       : widget.suffixIcon;
   Widget? get _getPrefixIcon => Icon(
         widget.prefixIcon,
-        color: _getSuffixColor,
+        color: _getPrefixColor,
       );
 
   @override
