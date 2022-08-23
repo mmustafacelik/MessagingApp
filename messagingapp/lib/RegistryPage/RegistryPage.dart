@@ -4,13 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:messagingapp/ForgotPasswordPage/ForgotPasswordPage.dart';
-import 'package:messagingapp/RegistryPage/RegistryPage.dart';
 import 'package:messagingapp/core/utils/custom_colors.dart';
 import 'package:messagingapp/widgets/custom_button/custom_button.dart';
 import 'package:messagingapp/widgets/custom_textformfield/custom_textformfield.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegistryPage extends StatelessWidget {
+  const RegistryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +19,25 @@ class LoginPage extends StatelessWidget {
   }
 
   getBody(BuildContext context) {
-    TextEditingController passwordController = TextEditingController();
+    final TextEditingController firstPasswordController =
+        TextEditingController();
+    final TextEditingController secondPasswordController =
+        TextEditingController();
+    final TextEditingController emailController = TextEditingController();
     var email = false.obs;
-    var password = false.obs;
+    var firstPassword = false.obs;
+    var secondPassword = false.obs;
     return SafeArea(
-      child: Container(
-        height: Get.height,
-        width: Get.width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/loginbackground.jpg"),
-            fit: BoxFit.cover,
+      child: SingleChildScrollView(
+        child: Container(
+          height: Get.height,
+          width: Get.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/loginbackground.jpg"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(height: 20),
@@ -42,26 +46,37 @@ class LoginPage extends StatelessWidget {
                 child: _SelectLaguageArea(),
               ),
               SizedBox(height: Get.height / 10),
-              _EmailTextFormField(email: email),
+              _EmailTextFormField(
+                  email: email, emailController: emailController),
               SizedBox(
                 height: Get.height / 15,
               ),
               _PasswordTextArea(
-                  passwordController: passwordController, password: password),
+                  passwordController: firstPasswordController,
+                  password: firstPassword),
+              SizedBox(
+                height: Get.height / 15,
+              ),
+              _PasswordTextArea(
+                  passwordController: secondPasswordController,
+                  password: secondPassword),
               const SizedBox(height: 20),
-              const _ButtonArea(),
-              SizedBox(height: Get.height / 14),
+              _ButtonArea(
+                firstPasswordController: firstPasswordController,
+                secondPasswordController: secondPasswordController,
+                email: email,
+                emailController: emailController,
+                firstPassword: firstPassword,
+                secondPassword: secondPassword,
+              ),
+              SizedBox(height: Get.height / 15),
               const _AnimatedTextArea(),
               SizedBox(
-                height: Get.height / 14,
+                height: Get.height / 15,
               ),
               const Divider(
                 color: Colors.yellow,
                 thickness: 1.5,
-              ),
-              const _RegisteryTextArea(),
-              SizedBox(
-                height: Get.height / 20,
               ),
               const _PasswordResetArea(),
             ],
@@ -88,36 +103,6 @@ class _PasswordResetArea extends StatelessWidget {
       onTap: () {
         Get.to(ForgotPasswordPage());
       },
-    );
-  }
-}
-
-class _RegisteryTextArea extends StatelessWidget {
-  const _RegisteryTextArea({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: "${'new to'.tr}   ",
-        style: const TextStyle(
-            color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),
-        /*defining default style is optional */
-        children: [
-          TextSpan(
-            text: 'registery'.tr,
-            style: const TextStyle(
-              color: Colors.cyanAccent,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Get.to(RegistryPage());
-              },
-          ),
-        ],
-      ),
     );
   }
 }
@@ -161,35 +146,69 @@ class _AnimatedTextArea extends StatelessWidget {
 }
 
 class _ButtonArea extends StatelessWidget {
-  const _ButtonArea({
+  _ButtonArea({
     Key? key,
+    required this.firstPasswordController,
+    required this.secondPasswordController,
+    required this.emailController,
+    required this.email,
+    required this.firstPassword,
+    required this.secondPassword,
   }) : super(key: key);
-
+  TextEditingController firstPasswordController = TextEditingController();
+  TextEditingController secondPasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  final RxBool email;
+  final RxBool firstPassword;
+  final RxBool secondPassword;
   @override
   Widget build(BuildContext context) {
     return CustomButton(
       width: Get.width / 2,
       text: Text(
-        "login".tr,
+        "registeryButtonText".tr,
         style: const TextStyle(color: CustomColors.color002060),
       ),
       backgroundColor: CustomColors.colorA4E0AE,
       radiusColor: Colors.white,
       onPressed: () {
-        Get.snackbar(
-          "GeeksforGeeks",
-          "Hello everyone",
-          icon: const Icon(Icons.person, color: Colors.white),
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          borderRadius: 20,
-          margin: const EdgeInsets.all(15),
-          colorText: CustomColors.color22242A,
-          duration: const Duration(seconds: 4),
-          isDismissible: true,
-          dismissDirection: DismissDirection.horizontal,
-          forwardAnimationCurve: Curves.easeOutBack,
-        );
+        if (email.value) {
+          if (firstPasswordController.text == secondPasswordController.text &&
+              firstPassword.value &&
+              secondPassword.value) {
+            //TODO: backend
+          } else {
+            Get.snackbar(
+              "passwordErrorTitle".tr,
+              "passwordError".tr,
+              icon: const Icon(Icons.person, color: Colors.white),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.green,
+              borderRadius: 20,
+              margin: const EdgeInsets.all(15),
+              colorText: CustomColors.color22242A,
+              duration: const Duration(seconds: 4),
+              isDismissible: true,
+              dismissDirection: DismissDirection.horizontal,
+              forwardAnimationCurve: Curves.easeOutBack,
+            );
+          }
+        } else {
+          Get.snackbar(
+            "emailError".tr,
+            "emailError".tr,
+            icon: const Icon(Icons.person, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            borderRadius: 20,
+            margin: const EdgeInsets.all(15),
+            colorText: CustomColors.color22242A,
+            duration: const Duration(seconds: 4),
+            isDismissible: true,
+            dismissDirection: DismissDirection.horizontal,
+            forwardAnimationCurve: Curves.easeOutBack,
+          );
+        }
       },
     );
   }
@@ -232,17 +251,20 @@ class _PasswordTextArea extends StatelessWidget {
 }
 
 class _EmailTextFormField extends StatelessWidget {
-  const _EmailTextFormField({
+  _EmailTextFormField({
     Key? key,
     required this.email,
+    required this.emailController,
   }) : super(key: key);
 
   final RxBool email;
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => CustomTextFormField(
+        controller: emailController,
         width: Get.width / 1.25,
         onChanged: (value) {
           if (EmailValidator.validate(value)) {
@@ -275,23 +297,38 @@ class _SelectLaguageArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
           iconSize: 50,
           onPressed: () {
-            var locale = const Locale('en', 'US');
-            Get.updateLocale(locale);
+            Get.back();
           },
-          icon: Image.asset("assets/language/american_us_flag_icon.png"),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
-        IconButton(
-          iconSize: 50,
-          onPressed: () {
-            var locale = const Locale('tr', 'TR');
-            Get.updateLocale(locale);
-          },
-          icon: Image.asset("assets/language/tr.png"),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              iconSize: 50,
+              onPressed: () {
+                var locale = const Locale('en', 'US');
+                Get.updateLocale(locale);
+              },
+              icon: Image.asset("assets/language/american_us_flag_icon.png"),
+            ),
+            IconButton(
+              iconSize: 50,
+              onPressed: () {
+                var locale = const Locale('tr', 'TR');
+                Get.updateLocale(locale);
+              },
+              icon: Image.asset("assets/language/tr.png"),
+            ),
+          ],
         ),
       ],
     );

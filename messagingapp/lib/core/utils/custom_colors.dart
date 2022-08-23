@@ -5,6 +5,7 @@ class CustomColors {
   static const Color colorF5F5F5 = Color(0xFFF5F5F5);
   static const Color color84ADF5 = Color(0xFF84ADF5);
   static const Color colorFF006A = Color(0xFFFF006A);
+  static const Color colorDC6868 = Color(0xFFDC6868);
   static const Color color0EC4AE = Color(0xFF0EC4AE);
   static const Color colorA4E0AE = Color(0xFFA4E0AE);
   static const Color colorD3D3D3 = Color(0xFFD3D3D3);

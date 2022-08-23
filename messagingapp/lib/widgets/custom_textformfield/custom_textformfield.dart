@@ -31,7 +31,7 @@ class CustomTextFormField extends StatefulWidget {
   final double? unFocusedFontSize;
   final Offset? offset;
   final Widget? suffixIcon;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final EdgeInsetsGeometry? insetPadding;
   final EdgeInsetsGeometry? contentPadding;
   final EdgeInsetsGeometry suffixIconPadding;
@@ -48,10 +48,12 @@ class CustomTextFormField extends StatefulWidget {
   final String? unFocusedTextFontFamily;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+  final TextEditingController? controller;
 
   const CustomTextFormField({
     Key? key,
     this.borderRadius = 24,
+    this.controller,
     this.hintText,
     this.width = double.infinity,
     this.height = 45,
@@ -117,8 +119,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       _focus ? widget.focusedTextColor : widget.unFocusedTextColor;
   Color get _getSuffixColor =>
       _focus ? widget.focusedSuffixColor : widget.unfocusedSuffixColor;
-  Color get _getPrefixColor =>
-      _focus ? widget.focusedPrefixColor : widget.unfocusedPrefixColor;
   bool get _getShadow =>
       widget.offset != null &&
       widget.shadowBlurRadius != null &&
@@ -149,10 +149,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           ),
         )
       : widget.suffixIcon;
-  Widget? get _getPrefixIcon => Icon(
-        widget.prefixIcon,
-        color: _getPrefixColor,
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -188,12 +184,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           if (widget.prefixIcon != null)
             Padding(
               padding: widget.prefixIconPadding,
-              child: _getPrefixIcon,
+              child: widget.prefixIcon,
             ),
           Expanded(
             child: Focus(
               onFocusChange: (value) => setState(() => _focus = value),
               child: TextFormField(
+                controller: widget.controller,
                 onChanged: widget.onChanged,
                 obscureText: widget.obscureText && _visibility,
                 style: TextStyle(
