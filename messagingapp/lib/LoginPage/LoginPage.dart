@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:messagingapp/ForgotPasswordPage/ForgotPasswordPage.dart';
+import 'package:messagingapp/BaseBinding.dart';
+import 'package:messagingapp/HomePage/HomePage.dart';
 import 'package:messagingapp/RegistryPage/RegistryPage.dart';
 import 'package:messagingapp/core/utils/custom_colors.dart';
 import 'package:messagingapp/widgets/custom_button/custom_button.dart';
@@ -190,6 +192,7 @@ class _ButtonArea extends StatelessWidget {
           dismissDirection: DismissDirection.horizontal,
           forwardAnimationCurve: Curves.easeOutBack,
         );
+        Get.to(HomePage(), binding: BaseBinding());
       },
     );
   }
