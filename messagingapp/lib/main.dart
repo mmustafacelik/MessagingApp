@@ -22,9 +22,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
+        darkTheme: ThemeData.dark(),
         getPages: [
           GetPage(
-            name: '/base',
+            name: '/LoginPage',
             page: () => const LoginPage(),
             binding: BaseBinding(),
           )

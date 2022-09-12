@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:messagingapp/core/utils/custom_colors.dart';
-import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  final ZoomDrawerController _controller = ZoomDrawerController();
+
   @override
   Widget build(BuildContext context) {
-    return SideMenu(
-      type: SideMenuType.slideNRotate,
-      child: Scaffold(
+    return ZoomDrawer(
+      controller: _controller,
+      menuBackgroundColor: Colors.amber,
+      style: DrawerStyle.defaultStyle,
+      showShadow: true,
+      menuScreen: MenuScreen(_controller),
+      mainScreen: Scaffold(
         appBar: AppBar(
-          title: Text('Shrink Side Menu'),
+          title: const Text('Shrink Side Menu'),
+          backgroundColor: Colors.amber,
           leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {},
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              _controller.toggle!();
+            },
           ),
         ),
         body: getBody(context),
       ),
-      menu: buildMenu(),
     );
   }
 
@@ -47,68 +55,226 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget buildMenu() {
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(50),
-      child: Column(children: [
-        ListTile(
-          onTap: () {},
-          leading: const Icon(Icons.home, size: 20.0, color: Colors.white),
-          title: const Text("Home"),
-          textColor: Colors.white,
-          dense: true,
-        ),
-        ListTile(
-          onTap: () {},
-          leading:
-              const Icon(Icons.verified_user, size: 20.0, color: Colors.white),
-          title: const Text("Profile"),
-          textColor: Colors.white,
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(Icons.monetization_on,
-              size: 20.0, color: Colors.white),
-          title: const Text("Wallet"),
-          textColor: Colors.white,
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-        ListTile(
-          onTap: () {},
-          leading:
-              const Icon(Icons.shopping_cart, size: 20.0, color: Colors.white),
-          title: const Text("Cart"),
-          textColor: Colors.white,
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-        ListTile(
-          onTap: () {},
-          leading:
-              const Icon(Icons.star_border, size: 20.0, color: Colors.white),
-          title: const Text("Favorites"),
-          textColor: Colors.white,
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(Icons.settings, size: 20.0, color: Colors.white),
-          title: const Text("Settings"),
-          textColor: Colors.white,
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-      ]),
-    );
-  }
+//!TODO: widget yaz ve menudeki rowları yazdığın bu widgete göndder.
+class MenuScreen extends StatelessWidget {
+  final zoomDrawerController;
+  MenuScreen(this.zoomDrawerController);
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DrawerHeader(
+            child: Row(
+              children: const [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    "https://avatarfiles.alphacoders.com/128/thumb-128984.png",
+                  ),
+                  maxRadius: 40,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Text(
+                    "data",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: Colors.deepPurple,
+                  thickness: 2,
+                ),
+                InkWell(
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "HomePage",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
 }
