@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
+import 'package:messagingapp/LoginPage/LoginPage.dart';
 import 'package:messagingapp/core/utils/custom_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -57,7 +58,38 @@ class HomePage extends StatelessWidget {
   }
 }
 
-//!TODO: widget yaz ve menudeki rowları yazdığın bu widgete göndder.
+Widget menuItem(Function page, String menuItemName, IconData prefixIcon) {
+  return Column(
+    children: [
+      const Divider(
+        color: Colors.deepPurple,
+        thickness: 2,
+      ),
+      InkWell(
+        child: Row(
+          children: [
+            Icon(
+              prefixIcon,
+              size: 35,
+              color: Colors.red,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Text(
+                menuItemName,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+        onTap: () {
+          Get.to(page);
+        },
+      ),
+    ],
+  );
+}
+
 class MenuScreen extends StatelessWidget {
   final zoomDrawerController;
   MenuScreen(this.zoomDrawerController);
@@ -74,205 +106,30 @@ class MenuScreen extends StatelessWidget {
                   ),
                   maxRadius: 40,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Text(
-                    "data",
-                    style: TextStyle(color: Colors.white),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Text(
+                      "Name and Surname",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(
-                  color: Colors.deepPurple,
-                  thickness: 2,
-                ),
-                InkWell(
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.home,
-                        size: 35,
-                        color: Colors.red,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          "HomePage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  menuItem(() => LoginPage(), "menuItemName", Icons.home),
+                  menuItem(() => LoginPage(), "Home", Icons.home),
+                  menuItem(() => LoginPage(), "LogOut", Icons.home),
+                  menuItem(() => LoginPage(), "Settings", Icons.home),
+                  menuItem(() => LoginPage(), "Light", Icons.home),
+                ],
+              ),
             ),
           ),
         ],
